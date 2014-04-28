@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Firebase Fun</title>
+
+	<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script> 
+    <script type='text/javascript' src='https://code.jquery.com/jquery-2.1.0.js'></script> 
+	<script type='text/javascript' src='http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js'></script> 
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.1/united/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+
+
+	<script type="text/javascript">
+    //Use YOUR Firebase URL (not the one below)
+
+    var myRootRef = new Firebase("https://resplendent-fire-4908.firebaseio.com/");
+    myRootRef.set('Hello World! - Joseph Ortiz here');
+    
+    var Presentation = {
+    	ID: "1",
+    	Title: "Some Cool Ted Talk",
+    	Question:"What is your favorite food ?"
+    };
+
+    var Product = {
+       Id: "0",
+       Name: $("#Name").val(),
+       Price: $("#Price").val(),
+       Category: $("#Category").val()
+   };
+
+    if (Presentation.ID != "" 
+    	&& Presentation.Title != "" 
+    	&& Presentation.Question != "") 
+    {
+    	var meetingRef = new Firebase("https://resplendent-fire-4908.firebaseio.com/Meeting");
+    	var newMessageRef = meetingRef.push();
+        //newMessageRef.set({'user_id': 'fred', 'text': 'Yabba Dabba Doo!'});
+
+        newMessageRef.set(
+        {
+            'id': Presentation.ID,
+            'title': Presentation.Title ,
+            'question': Presentation.Question
+        });
+
+        var newMessageRef2 = meetingRef.push();
+        newMessageRef2.set(
+        {
+            'id': '2',
+            'title': 'the punisher' ,
+            'question': 'Who killed Frank Castles family?'
+        });
+    	
+    }
+</script>
+</head>
+<body>
+	<div class="container">
+
+
+		<div style="overflow: auto;"class="jumbotron">
+
+
+
+		</div>
+	</div>
+	   
+</body>
+
+</html>
